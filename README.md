@@ -319,6 +319,7 @@ This demonstrates that the model identifies and prioritizes the semantically mea
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 3. Object Localization and Semantic Understanding
 </h3>
+
 The attention maps show a notable concentration of attention for the words "cat" and "dog" compared to other words in the prompt. <br><br>
 
 This implies that the model has effectively learned to localize objects in the image based on their textual descriptions.<br><br>
