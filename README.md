@@ -2,7 +2,7 @@
 Understanding Multimodal Large Language Models (MLLMs)
 </h1>
 
-<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+<h2>
 Introduction
 </h2>
 
