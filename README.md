@@ -17,7 +17,7 @@ In this blog, we’ll focus on PaliGemma (3B), a cutting-edge MLLM known for its
 </p>
 
 <h2>
-**Image and Text Encoders**
+Image and Text Encoders
 </h2>
 
 The process of transforming raw data into meaningful representations lies at the heart of multimodal learning, and this task is performed by encoders. Encoders play a crucial role in extracting features from raw inputs, such as images or text, and preparing them for downstream tasks. In the context of Multimodal Large Language Models (MLLMs), this step ensures that information from different modalities can be aligned and integrated effectively in a shared feature space.

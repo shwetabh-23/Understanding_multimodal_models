@@ -5,4 +5,4 @@ show_downloads: false
 logo: /assests/img/my_photu.jpg 
 
 sass:
-  custom_css: /assets/css/style.css
+  custom_css: /assets/style.css
