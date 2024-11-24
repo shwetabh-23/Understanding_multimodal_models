@@ -30,14 +30,14 @@ The process of transforming raw data into meaningful representations lies at the
 
 There are two primary approaches to designing image and text encoders:<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-1. Traditional Approach: Building Custom Pipelines<br><br>
+1. Traditional Approach: Building Custom Pipelines
 </h3>
 In this approach, specialized pipelines are constructed for each modality to extract features. For images, this typically involves Vision Transformers (ViTs) or convolutional neural networks to process pixel data and generate feature embeddings. For text, tokenizers convert sentences into discrete tokens, which are then passed through transformer layers to produce continuous feature representations.<br><br>
 
 The extracted features are then projected into a common feature space, enabling alignment and comparison between modalities. A contrastive loss setting is commonly used during training to ensure that semantically similar image-text pairs are closer in the feature space, while dissimilar pairs are pushed apart. This method has been successfully employed in early multimodal models like CLIP and ALIGN, which demonstrated remarkable performance on tasks like zero-shot image classification and cross-modal retrieval.<br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-2. Modern Approach: Leveraging Pretrained Models<br><br>
+2. Modern Approach: Leveraging Pretrained Models
 </h3>
 
 The second, more recent approach builds on the idea of transfer learning by utilizing pretrained encoders for image and text features. Instead of designing modality-specific pipelines from scratch, this method uses models like ViTs pretrained on large-scale datasets for image feature extraction and LLMs such as GPT for text. The extracted features are mapped to a shared feature space through learnable transformations, often using linear layers or specialized fusion mechanisms.<br><br>
@@ -88,10 +88,15 @@ Self-Attention:
 </h3>
 Computes attention scores within the same input sequence, enabling a token to attend to other tokens in its context. This is the backbone of models like transformers.<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Cross-Attention: Computes attention scores between two sequences, such as between text and image features in multimodal models.<br><br>
+Cross-Attention: 
+</h3>
+
+Computes attention scores between two sequences, such as between text and image features in multimodal models.<br><br>
 </h3>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Global vs. Local Attention: Global attention considers all tokens, while local attention focuses on a subset, optimizing for tasks with very long sequences.
+Global vs. Local Attention:
+</h3>
+Global attention considers all tokens, while local attention focuses on a subset, optimizing for tasks with very long sequences.
 I am not describing the concept of multiheaded attention here as it is beyond the scope of this book, but it is to be noted that we'll be averaging over all the attention heads in each layer for the upcoming discussions. <br><br>
 </h3>
 
@@ -246,24 +251,23 @@ From the Gemma decoder, extract the attention matrix with dimensions [256 + num_
 [256:,256:]: Text-Text Attention Matrix. <br><br>
 Focus on the Image-Text Attention Matrix: <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Select the matrix  <br><br>
-</h3>
+Select the matrix 
 [:256,256:], which has the shape [256, num_words + 2]. This matrix describes how each image patch attends to each word (including the  <bos> and  tokens). <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Reshape for Spatial Understanding: <br><br>
+Reshape for Spatial Understanding: 
 </h3>
 Reshape the matrix into a shape of [16, 16, num_words + 2]. This reorganization treats the 256 image patches as a 16x16 grid, restoring a spatial interpretation. <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Visualize Attention for Each Word: <br><br>
+Visualize Attention for Each Word: 
 </h3>
-For each word (i.e., for each value in the last dimension of the reshaped matrix), generate a 16x16 attention map. These maps quantify how much attention the word gives to the entire image. <br><br>
+For each word (i.e., for each value in the last dimension of the reshaped matrix), generate a 16x16 attention map. These maps quantify how much attention the word gives to the entire image.
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Overlay Attention Maps on the Image: <br><br>
+Overlay Attention Maps on the Image: 
 </h3>
-Each attention map is plotted over the original image, allowing a comparative study of how different words interact with the visual input. <br><br>
+Each attention map is plotted over the original image, allowing a comparative study of how different words interact with the visual input. 
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Key Results from Visualization <br><br>
+Key Results from Visualization 
 </h3>
 This method yields num_words + 2 attention maps, one for each word token. By analyzing the variation in these maps for different prompts, we can study how the model dynamically distributes attention between the textual and visual modalities. These insights will guide us toward meaningful conclusions about the attention mechanism in multimodal settings, as detailed in the next section. <br><br>
 </p>
@@ -298,21 +302,21 @@ Conclusions from Plotted Attention Maps
 <p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 <br><br> The analysis of the attention maps from image-text input pairs reveals several notable patterns and insights about how the PaliGemma model aligns textual and visual modalities. Below are the primary conclusions drawn:<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-1. Consistent Relative Attention Scores Across Prompts <br><br>
+1. Consistent Relative Attention Scores Across Prompts 
 </h3>
 Upon comparing attention maps for various prompts across the two images (cat and dog), a clear pattern of similarity emerges for words other than "cat" and "dog."<br><br>
 
 These words (e.g., "this," "is," or "a") exhibit attention maps that consistently highlight the same regions across all prompts. <br><br>
 This consistency suggests that the model treats these auxiliary words uniformly, focusing on certain background regions of the image regardless of the main subject. <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-2. Impact of Keywords on Attention Maps<br><br>
+2. Impact of Keywords on Attention Maps
 </h3>
 For the prompts "This is a cat" and "This is a dog," the attention maps reveal significant changes only for the keywords ("cat" and "dog").<br><br>
 
 The attention distribution for all other words remains unchanged, indicating that these keywords play a critical role in the model’s decision-making process. <br><br>
 This demonstrates that the model identifies and prioritizes the semantically meaningful tokens (in this case, the words describing the objects in the image) over auxiliary tokens.
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-3. Object Localization and Semantic Understanding <br><br>
+3. Object Localization and Semantic Understanding
 </h3>
 The attention maps show a notable concentration of attention for the words "cat" and "dog" compared to other words in the prompt. <br><br>
 
@@ -340,13 +344,13 @@ Applications and Conclusion
 <p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 Applications of Understanding Internal Model Functioning<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Explainability in Large Models<br><br>
+Explainability in Large Models
 </h3>
 
 The ability to analyze what a model learns internally is a significant step toward addressing the explainability problem in LLMs and MLLMs.
 These models are often regarded as black boxes due to their massive scale—both in terms of training data and the number of parameters. By visualizing and interpreting attention maps, we can shed light on how models process inputs and make decisions.<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Enhancing Model Quality<br><br>
+Enhancing Model Quality
 </h3>
 
 Gaining insights into the attention mechanisms and feature alignments can lead to better-informed architectural decisions.
