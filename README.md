@@ -1,4 +1,6 @@
-**Introduction**
+<h1 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Introduction
+</h1>
 In 2017, the groundbreaking paper “Attention Is All You Need” introduced the transformer architecture, which revolutionized the machine learning landscape. By placing attention mechanisms at the core of deep learning models, transformers redefined how machines process sequential data, enabling them to focus selectively on relevant information. This innovation took the ML community by storm, giving rise to a new era of state-of-the-art models across various domains.
 
 The applications of attention have since permeated every corner of artificial intelligence. Large Language Models (LLMs), such as ChatGPT, have leveraged transformers to redefine natural language understanding and generation, powering applications like conversational agents, summarization tools, and code generation. Similarly, Vision Transformers (ViTs) adapted the transformer architecture to computer vision, enabling breakthroughs in image classification, object detection, and beyond. Attention’s ability to handle long-range dependencies and multimodal inputs has made it the cornerstone of modern AI advancements.
@@ -8,6 +10,7 @@ Recent progress has further pushed the boundaries of what attention mechanisms c
 In this blog, we’ll focus on PaliGemma (3B), a cutting-edge MLLM known for its ability to combine high-dimensional features from images and text using separate image and text encoders, using attention mechanisms to generate a common feature space. By exploring its architecture and functionality, we’ll uncover how MLLMs are shaping the future of AI.
 
 **Image and Text Encoders**
+
 The process of transforming raw data into meaningful representations lies at the heart of multimodal learning, and this task is performed by encoders. Encoders play a crucial role in extracting features from raw inputs, such as images or text, and preparing them for downstream tasks. In the context of Multimodal Large Language Models (MLLMs), this step ensures that information from different modalities can be aligned and integrated effectively in a shared feature space.
 
 There are two primary approaches to designing image and text encoders:
