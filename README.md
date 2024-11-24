@@ -6,7 +6,7 @@ Understanding Multimodal Large Language Models (MLLMs)
 Introduction
 </h2>
 
-<p>
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 In 2017, the groundbreaking paper “Attention Is All You Need” introduced the transformer architecture, which revolutionized the machine learning landscape. By placing attention mechanisms at the core of deep learning models, transformers redefined how machines process sequential data, enabling them to focus selectively on relevant information. This innovation took the ML community by storm, giving rise to a new era of state-of-the-art models across various domains.
 
 The applications of attention have since permeated every corner of artificial intelligence. Large Language Models (LLMs), such as ChatGPT, have leveraged transformers to redefine natural language understanding and generation, powering applications like conversational agents, summarization tools, and code generation. Similarly, Vision Transformers (ViTs) adapted the transformer architecture to computer vision, enabling breakthroughs in image classification, object detection, and beyond. Attention’s ability to handle long-range dependencies and multimodal inputs has made it the cornerstone of modern AI advancements.
@@ -20,29 +20,41 @@ In this blog, we’ll focus on PaliGemma (3B), a cutting-edge MLLM known for its
 Image and Text Encoders
 </h2>
 
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 The process of transforming raw data into meaningful representations lies at the heart of multimodal learning, and this task is performed by encoders. Encoders play a crucial role in extracting features from raw inputs, such as images or text, and preparing them for downstream tasks. In the context of Multimodal Large Language Models (MLLMs), this step ensures that information from different modalities can be aligned and integrated effectively in a shared feature space.
 
 There are two primary approaches to designing image and text encoders:
 
 1. Traditional Approach: Building Custom Pipelines
+
 In this approach, specialized pipelines are constructed for each modality to extract features. For images, this typically involves Vision Transformers (ViTs) or convolutional neural networks to process pixel data and generate feature embeddings. For text, tokenizers convert sentences into discrete tokens, which are then passed through transformer layers to produce continuous feature representations.
 
 The extracted features are then projected into a common feature space, enabling alignment and comparison between modalities. A contrastive loss setting is commonly used during training to ensure that semantically similar image-text pairs are closer in the feature space, while dissimilar pairs are pushed apart. This method has been successfully employed in early multimodal models like CLIP and ALIGN, which demonstrated remarkable performance on tasks like zero-shot image classification and cross-modal retrieval.
 
 2. Modern Approach: Leveraging Pretrained Models
+
 The second, more recent approach builds on the idea of transfer learning by utilizing pretrained encoders for image and text features. Instead of designing modality-specific pipelines from scratch, this method uses models like ViTs pretrained on large-scale datasets for image feature extraction and LLMs such as GPT for text. The extracted features are mapped to a shared feature space through learnable transformations, often using linear layers or specialized fusion mechanisms.
 
 The advantage of this approach lies in its flexibility and scalability. By decoupling feature extraction from multimodal alignment, architectures can focus on learning to integrate information across modalities. Notable examples include LLaMA, PaliGemma, and GPT models, which excel in aligning high-dimensional features from image and text encoders through advanced attention mechanisms.
+
+</p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Why Modern Approaches Dominate
 </h2>
 
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 There are two primary reasons : Firstly, it is difficult, computationally heavy and requires additional parameters to bring images and text with more context and details to a common feature space. The data used to train CLIP was relatively simpler, with sentences like : A cat playing with a ball. Internally, the model learns to map the words "cat" and "ball" to the cat and ball objects in the image. This is not easily achievable when there in more detail and context in the inputs. This is the reason why CLIP is very useful in tasks like classification, and cannot be used for autoregressive text generation.
 Secondly, transfer learning has proven to be really efficient, and requries less compute and fewer parameters to achieve similar results. 
 The shift toward pretrained models reflects a growing emphasis on leveraging existing architectures with proven capabilities. Models like PaliGemma exemplify this paradigm, using powerful pretrained encoders to extract features and concentrating the training effort on developing a deeper cross-modal understanding. This strategy not only reduces computational costs but also enables the model to achieve state-of-the-art performance on multimodal tasks.
 By combining the strengths of pretrained encoders with attention-based fusion techniques, MLLMs have redefined how information from diverse modalities can be brought together in a seamless and efficient manner. In the next section, we will dive deeper into the mechanism that makes this integration possible: attention.
-Attention is all you need : 
+</p>
+
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Attention is all you need 
+</h2>
+
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 Attention is the cornerstone of modern AI architectures, enabling models to focus selectively on relevant parts of input data while processing sequences. Introduced in the “Attention Is All You Need” paper, this mechanism has transformed natural language processing, computer vision, and multimodal learning by providing a robust framework for capturing dependencies and relationships across elements in data. The complete attention mechanism in all its integrity is beyond the scope of this blog, but here's a quick overview. 
 
 At its core, the attention mechanism revolves around three key components: Query (Q), Key (K), and Value (V) matrices. These matrices are derived from the input data, where:
@@ -64,10 +76,13 @@ Cross-Attention: Computes attention scores between two sequences, such as betwee
 Global vs. Local Attention: Global attention considers all tokens, while local attention focuses on a subset, optimizing for tasks with very long sequences.
 I am not describing the concept of multiheaded attention here as it is beyond the scope of this book, but it is to be noted that we'll be averaging over all the attention heads in each layer for the upcoming discussions. 
 
+</p>
+
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Overview of the Complete PaliGemma model Architecture
 </h2>
 
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 The PaliGemma model is designed to seamlessly integrate image and text data using a sophisticated architecture that leverages pretrained encoders and attention mechanisms. This section provides a detailed breakdown of its components and functionality.
 
 Image Encoder: SiGLiP-400M
@@ -97,11 +112,13 @@ Training the Model
 The PaliGemma model is trained end-to-end, with no components frozen during training. This ensures that both the image encoder and text encoder can adaptively refine their representations based on the multimodal input. The training process aligns the representations of text and image modalities, creating a shared feature space that enables cross-modal tasks.
 
 PaliGemma’s architecture highlights a thoughtful integration of pretrained encoders and attention mechanisms, balancing efficiency with performance. In the next sections, we will explore how attention mechanisms are applied across the combined features and visualize their effects on model outputs.
+</p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Plotting Techniques for the Image Encoder
 </h2>
 
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 The SiGLiP image encoder in PaliGemma comprises 26 layers of multi-headed self-attention networks. Each layer attends to different aspects of the image, focusing on specific regions and patterns. By plotting the attention maps, we can gain insight into how the model interprets visual data and what features it prioritizes during processing.
 
 For a thorough understanding, we will visualize two types of attention maps:
@@ -144,11 +161,13 @@ Global Attention Map (Summation of All Layers):
 The aggregated map illustrates how the model combines information from all 26 layers to develop a comprehensive understanding of the image.
 Specific regions, typically corresponding to objects or areas of interest, receive higher attention, while background regions are assigned comparatively lower attention.
 This distribution reflects the model’s ability to prioritize meaningful features while suppressing irrelevant details, a critical factor in effective feature extraction.
+</p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Plotting Techniques for a Combination of Image and Text Encoders
 </h2>
 
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 Visualizing the attention between image and text encoders is a more complex task compared to analyzing image-only attention maps. This complexity arises from the loss of spatial information in the image features due to a linear layer transformation and the distribution mismatch between image and text features. However, with innovative techniques, we can gain meaningful insights into how words interact with the image at a high level.
 
 Challenges in Visualization
@@ -160,11 +179,13 @@ Image and text features originate from different encoders, each operating in dis
 
 Approach to Understand Image-Text Attention
 Instead of attempting to directly map specific words to specific patches in the image, we analyze the total attention that each word assigns to the entire image. This approach allows us to derive meaningful insights without needing direct spatial correspondence.
+</p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Steps for Visualization
 </h2>
 
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 Extract Attention Matrices:
 From the Gemma decoder, extract the attention matrix with dimensions [256 + num_words + 2, 256 + num_words + 2]. This matrix contains attention scores for both the image patches and text tokens, organized as follows:
 [:256,:256]: Image-Image Attention Matrix.
@@ -186,10 +207,13 @@ Each attention map is plotted over the original image, allowing a comparative st
 
 Key Results from Visualization
 This method yields num_words + 2 attention maps, one for each word token. By analyzing the variation in these maps for different prompts, we can study how the model dynamically distributes attention between the textual and visual modalities. These insights will guide us toward meaningful conclusions about the attention mechanism in multimodal settings, as detailed in the next section.
+</p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Drawing Results from Image-Text Attention Maps
 </h2>
+
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 
 While a single attention map for an image-text pair might seem uninformative, meaningful patterns and insights emerge when comparing maps across different input combinations. By systematically varying the image-text pairs and studying the resulting attention distributions, we can uncover how the model aligns the visual and textual modalities.
 
@@ -204,11 +228,13 @@ To explore the behavior of the attention mechanism, we will use two images (one 
 "This is a cat."
 Analysis Framework
 The analysis will focus on comparing the image-text attention maps generated by the second attention matrix  [:256,256:], which quantifies how each word attends to the entire image.
+</p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Conclusions from Plotted Attention Maps
 </h2>
 
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 The analysis of the attention maps from image-text input pairs reveals several notable patterns and insights about how the PaliGemma model aligns textual and visual modalities. Below are the primary conclusions drawn:
 
 1. Consistent Relative Attention Scores Across Prompts
@@ -226,17 +252,26 @@ The attention maps show a notable concentration of attention for the words "cat"
 
 This implies that the model has effectively learned to localize objects in the image based on their textual descriptions.
 The high attention scores for these keywords confirm that the model associates specific visual regions of the image with their corresponding textual labels, highlighting its ability to process and align multimodal inputs.
+</p>
+
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Summary
+</h2>
+
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 The plotted attention maps provide valuable insights into the inner workings of the attention mechanism in multimodal models like PaliGemma. These findings demonstrate the model's ability to:
 
 Maintain consistent processing for non-essential words.
 Assign higher importance to semantically critical words like "cat" and "dog."
 Localize objects in images based on textual prompts, showing an advanced level of cross-modal understanding.
 These observations validate the efficacy of the model’s design while also offering a foundation for future improvements in multimodal attention-based architectures.
+</p>
+
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Applications and Conclusion
 </h2>
 
+<p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
 Applications of Understanding Internal Model Functioning
 Explainability in Large Models
 
@@ -256,3 +291,4 @@ In this blog, I explored the inner workings of the PaliGemma multimodal model by
 This exercise not only highlights the potential of attention-based architectures but also demonstrates the importance of understanding the learning process of large models. By visualizing these complex processes, I hope to make the topic more accessible, stimulate curiosity, and inspire further exploration into the world of explainable and generalizable machine learning models.
 
 This journey into attention maps is just the beginning—there’s much more to uncover in the pursuit of explainability and improvement of AI systems.
+</p>
