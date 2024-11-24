@@ -138,7 +138,7 @@ The two transformed feature sets are concatenated along the sequence dimension a
 
 An important detail is that the spatial information of image patches is lost when the features are passed through the linear layer. However, this information is not discarded internally—its just that it cannot be visualized as expected.<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Training the Model<br><br>
+Training the Model
 </h3>
 The PaliGemma model is trained end-to-end, with no components frozen during training. This ensures that both the image encoder and text encoder can adaptively refine their representations based on the multimodal input. The training process aligns the representations of text and image modalities, creating a shared feature space that enables cross-modal tasks. <br><br>
 
@@ -163,17 +163,17 @@ Global Attention:
 A cumulative attention map obtained by summing the attention scores across all 26 layers, illustrating the broader context captured by the model.<br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Steps to Plot an Attention Map<br><br>
+Steps to Plot an Attention Map
 </h3>
 The process of generating an attention map involves extracting and processing the attention scores from the encoder’s attention layers:<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Extracting Attention Scores: <br><br>
+Extracting Attention Scores: 
 </h3>
 The attention scores matrix  <br><br>
 			attention_scores = A.KT
 for each attention layer has a shape of [256, 256], corresponding to the 256 image patches. Each value in this matrix describes how much one patch attends to another.<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Reshaping to Preserve Spatial Layout: <br><br>
+Reshaping to Preserve Spatial Layout: 
 </h3>
 To visualize attention in the spatial domain, we reshape the attention scores from [256, 256] to [16, 16, 16, 16]. <br><br>
 
@@ -181,27 +181,27 @@ The first two dimensions [16,16] represent the spatial grid of patches in the or
 The last two dimensions  [16,16] describe the attention relationships between patches. <br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Reducing Dimensionality: <br><br>
+Reducing Dimensionality: 
 </h3>
 To aggregate the attention information, we compute the maximum attention scores across the last two dimensions, reducing the matrix to [16, 16]. This step creates a simplified map of how each patch attends to all others in the spatial grid. <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Upscaling to Image Resolution: <br><br>
+Upscaling to Image Resolution: 
 </h3>
 The [16, 16] attention map is upscaled to the original image dimensions using bilinear interpolation. This ensures the map aligns with the input image resolution for effective visualization. <br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Overlaying on the Original Image: <br><br>
+Overlaying on the Original Image:
 </h3>
 
 The resulting attention map is superimposed on the original image with a transparency value. This overlay helps visualize which parts of the image the encoder attends to, either at a single layer or across multiple layers. <br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Results from Image Encoder Visualizations <br><br>
+Results from Image Encoder Visualizations 
 </h3>
 Visualizing attention maps from the image encoder provides valuable insights into how the SiGLiP model processes visual data at different levels. Here are the key observations: <br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Single-Layer Attention Maps: <br><br>
+Single-Layer Attention Maps: 
 </h3>
 These maps demonstrate a localized focus, highlighting specific regions or features within the image. <br><br>
 The model tends to concentrate on distinct patches, such as edges, textures, or parts of objects, without forming a holistic understanding of the entire image. <br><br>
