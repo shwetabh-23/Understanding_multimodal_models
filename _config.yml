@@ -3,3 +3,6 @@ title: Shwetabh Biswas
 description: Artificial Intelligence | Machine Learning | NLP | CV | Data Science | Life Long Learner
 show_downloads: false
 logo: /assests/img/my_photu.jpg 
+
+sass:
+  custom_css: /assets/css/style.css
