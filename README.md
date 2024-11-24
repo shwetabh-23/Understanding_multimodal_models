@@ -252,6 +252,7 @@ From the Gemma decoder, extract the attention matrix with dimensions [256 + num_
 Focus on the Image-Text Attention Matrix: <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 Select the matrix 
+</h3>
 [:256,256:], which has the shape [256, num_words + 2]. This matrix describes how each image patch attends to each word (including the  <bos> and  tokens). <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 Reshape for Spatial Understanding: 
