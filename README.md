@@ -2,7 +2,7 @@
 Understanding Multimodal Large Language Models (MLLMs)
 </h1>
 
-<h2>
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Introduction
 </h2>
 
@@ -16,7 +16,7 @@ Recent progress has further pushed the boundaries of what attention mechanisms c
 In this blog, we’ll focus on PaliGemma (3B), a cutting-edge MLLM known for its ability to combine high-dimensional features from images and text using separate image and text encoders, using attention mechanisms to generate a common feature space. By exploring its architecture and functionality, we’ll uncover how MLLMs are shaping the future of AI.
 </p>
 
-<h2>
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Image and Text Encoders
 </h2>
 
@@ -34,7 +34,10 @@ The second, more recent approach builds on the idea of transfer learning by util
 
 The advantage of this approach lies in its flexibility and scalability. By decoupling feature extraction from multimodal alignment, architectures can focus on learning to integrate information across modalities. Notable examples include LLaMA, PaliGemma, and GPT models, which excel in aligning high-dimensional features from image and text encoders through advanced attention mechanisms.
 
-**Why Modern Approaches Dominate**
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Why Modern Approaches Dominate
+</h2>
+
 There are two primary reasons : Firstly, it is difficult, computationally heavy and requires additional parameters to bring images and text with more context and details to a common feature space. The data used to train CLIP was relatively simpler, with sentences like : A cat playing with a ball. Internally, the model learns to map the words "cat" and "ball" to the cat and ball objects in the image. This is not easily achievable when there in more detail and context in the inputs. This is the reason why CLIP is very useful in tasks like classification, and cannot be used for autoregressive text generation.
 Secondly, transfer learning has proven to be really efficient, and requries less compute and fewer parameters to achieve similar results. 
 The shift toward pretrained models reflects a growing emphasis on leveraging existing architectures with proven capabilities. Models like PaliGemma exemplify this paradigm, using powerful pretrained encoders to extract features and concentrating the training effort on developing a deeper cross-modal understanding. This strategy not only reduces computational costs but also enables the model to achieve state-of-the-art performance on multimodal tasks.
@@ -61,7 +64,10 @@ Cross-Attention: Computes attention scores between two sequences, such as betwee
 Global vs. Local Attention: Global attention considers all tokens, while local attention focuses on a subset, optimizing for tasks with very long sequences.
 I am not describing the concept of multiheaded attention here as it is beyond the scope of this book, but it is to be noted that we'll be averaging over all the attention heads in each layer for the upcoming discussions. 
 
-**Overview of the Complete PaliGemma model Architecture**
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Overview of the Complete PaliGemma model Architecture
+</h2>
+
 The PaliGemma model is designed to seamlessly integrate image and text data using a sophisticated architecture that leverages pretrained encoders and attention mechanisms. This section provides a detailed breakdown of its components and functionality.
 
 Image Encoder: SiGLiP-400M
@@ -92,7 +98,10 @@ The PaliGemma model is trained end-to-end, with no components frozen during trai
 
 PaliGemma’s architecture highlights a thoughtful integration of pretrained encoders and attention mechanisms, balancing efficiency with performance. In the next sections, we will explore how attention mechanisms are applied across the combined features and visualize their effects on model outputs.
 
-**Plotting Techniques for the Image Encoder**
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Plotting Techniques for the Image Encoder
+</h2>
+
 The SiGLiP image encoder in PaliGemma comprises 26 layers of multi-headed self-attention networks. Each layer attends to different aspects of the image, focusing on specific regions and patterns. By plotting the attention maps, we can gain insight into how the model interprets visual data and what features it prioritizes during processing.
 
 For a thorough understanding, we will visualize two types of attention maps:
@@ -136,7 +145,9 @@ The aggregated map illustrates how the model combines information from all 26 la
 Specific regions, typically corresponding to objects or areas of interest, receive higher attention, while background regions are assigned comparatively lower attention.
 This distribution reflects the model’s ability to prioritize meaningful features while suppressing irrelevant details, a critical factor in effective feature extraction.
 
-**Plotting Techniques for a Combination of Image and Text Encoders**
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Plotting Techniques for a Combination of Image and Text Encoders
+</h2>
 
 Visualizing the attention between image and text encoders is a more complex task compared to analyzing image-only attention maps. This complexity arises from the loss of spatial information in the image features due to a linear layer transformation and the distribution mismatch between image and text features. However, with innovative techniques, we can gain meaningful insights into how words interact with the image at a high level.
 
@@ -150,7 +161,9 @@ Image and text features originate from different encoders, each operating in dis
 Approach to Understand Image-Text Attention
 Instead of attempting to directly map specific words to specific patches in the image, we analyze the total attention that each word assigns to the entire image. This approach allows us to derive meaningful insights without needing direct spatial correspondence.
 
-**Steps for Visualization:**
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Steps for Visualization
+</h2>
 
 Extract Attention Matrices:
 From the Gemma decoder, extract the attention matrix with dimensions [256 + num_words + 2, 256 + num_words + 2]. This matrix contains attention scores for both the image patches and text tokens, organized as follows:
@@ -174,7 +187,10 @@ Each attention map is plotted over the original image, allowing a comparative st
 Key Results from Visualization
 This method yields num_words + 2 attention maps, one for each word token. By analyzing the variation in these maps for different prompts, we can study how the model dynamically distributes attention between the textual and visual modalities. These insights will guide us toward meaningful conclusions about the attention mechanism in multimodal settings, as detailed in the next section.
 
-**Drawing Results from Image-Text Attention Maps**
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Drawing Results from Image-Text Attention Maps
+</h2>
+
 While a single attention map for an image-text pair might seem uninformative, meaningful patterns and insights emerge when comparing maps across different input combinations. By systematically varying the image-text pairs and studying the resulting attention distributions, we can uncover how the model aligns the visual and textual modalities.
 
 Experimental Setup
@@ -189,7 +205,9 @@ To explore the behavior of the attention mechanism, we will use two images (one 
 Analysis Framework
 The analysis will focus on comparing the image-text attention maps generated by the second attention matrix  [:256,256:], which quantifies how each word attends to the entire image.
 
-**Conclusions from Plotted Attention Maps**
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Conclusions from Plotted Attention Maps
+</h2>
 
 The analysis of the attention maps from image-text input pairs reveals several notable patterns and insights about how the PaliGemma model aligns textual and visual modalities. Below are the primary conclusions drawn:
 
@@ -215,8 +233,9 @@ Maintain consistent processing for non-essential words.
 Assign higher importance to semantically critical words like "cat" and "dog."
 Localize objects in images based on textual prompts, showing an advanced level of cross-modal understanding.
 These observations validate the efficacy of the model’s design while also offering a foundation for future improvements in multimodal attention-based architectures.
-
-**Applications and Conclusion**
+<h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
+Applications and Conclusion
+</h2>
 
 Applications of Understanding Internal Model Functioning
 Explainability in Large Models
