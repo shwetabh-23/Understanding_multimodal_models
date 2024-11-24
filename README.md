@@ -1,4 +1,4 @@
-<h1>
+<h1 style="text-align: center; font-family: 'Times New Roman', serif; font-size: 36px; font-weight: bold; color: #2c3e50;">
 Understanding Multimodal Large Language Models (MLLMs)
 </h1>
 
@@ -7,13 +7,18 @@ Introduction
 </h2>
 
 <p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
+
 In 2017, the groundbreaking paper “Attention Is All You Need” introduced the transformer architecture, which revolutionized the machine learning landscape. By placing attention mechanisms at the core of deep learning models, transformers redefined how machines process sequential data, enabling them to focus selectively on relevant information. This innovation took the ML community by storm, giving rise to a new era of state-of-the-art models across various domains.
+
 
 The applications of attention have since permeated every corner of artificial intelligence. Large Language Models (LLMs), such as ChatGPT, have leveraged transformers to redefine natural language understanding and generation, powering applications like conversational agents, summarization tools, and code generation. Similarly, Vision Transformers (ViTs) adapted the transformer architecture to computer vision, enabling breakthroughs in image classification, object detection, and beyond. Attention’s ability to handle long-range dependencies and multimodal inputs has made it the cornerstone of modern AI advancements.
 
+
 Recent progress has further pushed the boundaries of what attention mechanisms can achieve. The development of Multimodal Large Language Models (MLLMs) marks the next step in this journey. These models integrate multiple data modalities—like text, images, and audio—into a unified framework, enabling them to tackle tasks that were previously impossible. From Flamingo to PaliGemma, MLLMs vary widely in their architecture, parameter counts, and performance, ranging from lightweight models suitable for edge devices to massive systems trained on billions of examples for unparalleled generalization.
 
+
 In this blog, we’ll focus on PaliGemma (3B), a cutting-edge MLLM known for its ability to combine high-dimensional features from images and text using separate image and text encoders, using attention mechanisms to generate a common feature space. By exploring its architecture and functionality, we’ll uncover how MLLMs are shaping the future of AI.
+
 </p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
