@@ -290,9 +290,9 @@ Visualize Attention for Each Word:
 </h3>
 For each word (i.e., for each value in the last dimension of the reshaped matrix), generate a 16x16 attention map. These maps quantify how much attention the word gives to the entire image.
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Overlay Attention Maps on the Image: 
+Overlay Attention Maps on the Image: <br><br>
 </h3>
-Each attention map is plotted over the original image, allowing a comparative study of how different words interact with the visual input. 
+Each attention map is plotted over the original image, allowing a comparative study of how different words interact with the visual input. <br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 Key Results from Visualization 
