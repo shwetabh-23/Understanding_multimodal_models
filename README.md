@@ -417,7 +417,7 @@ Conclusions from Plotted Attention Maps
 </h2>
 
 <p style="text-align: justify; font-family: 'Verdana', sans-serif; font-size: 16px; font-style: italic;">
-<br><br> The analysis of the attention maps from image-text input pairs reveals several notable patterns and insights about how the PaliGemma model aligns textual and visual modalities. Below are the primary conclusions drawn:<br><br>
+The analysis of the attention maps from image-text input pairs reveals several notable patterns and insights about how the PaliGemma model aligns textual and visual modalities. Below are the primary conclusions drawn:<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 1. Consistent Relative Attention Scores Across Prompts 
 </h3>
@@ -431,7 +431,7 @@ This consistency suggests that the model treats these auxiliary words uniformly,
 For the prompts "This is a cat" and "This is a dog," the attention maps reveal significant changes only for the keywords ("cat" and "dog").<br><br>
 
 The attention distribution for all other words remains unchanged, indicating that these keywords play a critical role in the model’s decision-making process. <br><br>
-This demonstrates that the model identifies and prioritizes the semantically meaningful tokens (in this case, the words describing the objects in the image) over auxiliary tokens.
+This demonstrates that the model identifies and prioritizes the semantically meaningful tokens (in this case, the words describing the objects in the image) over auxiliary tokens.<br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 3. Object Localization and Semantic Understanding
 </h3>
@@ -439,7 +439,7 @@ This demonstrates that the model identifies and prioritizes the semantically mea
 The attention maps show a notable concentration of attention for the words "cat" and "dog" compared to other words in the prompt. <br><br>
 
 This implies that the model has effectively learned to localize objects in the image based on their textual descriptions.<br><br>
-The high attention scores for these keywords confirm that the model associates specific visual regions of the image with their corresponding textual labels, highlighting its ability to process and align multimodal inputs.<br><br>
+The high attention scores for these keywords confirm that the model associates specific visual regions of the image with their corresponding textual labels, highlighting its ability to process and align multimodal inputs.
 </p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
