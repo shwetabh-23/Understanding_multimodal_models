@@ -233,7 +233,7 @@ These maps demonstrate a localized focus, highlighting specific regions or featu
 The model tends to concentrate on distinct patches, such as edges, textures, or parts of objects, without forming a holistic understanding of the entire image. <br><br>
 This behavior aligns with the lower-level processing characteristic of initial attention layers, where the focus is primarily on extracting granular details. <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Global Attention Map (Summation of All Layers): <br><br>
+Global Attention Map (Summation of All Layers):
 </h3>
 The aggregated map illustrates how the model combines information from all 26 layers to develop a comprehensive understanding of the image. <br><br>
 Specific regions, typically corresponding to objects or areas of interest, receive higher attention, while background regions are assigned comparatively lower attention. <br><br>
@@ -298,7 +298,6 @@ Each attention map is plotted over the original image, allowing a comparative st
 Key Results from Visualization 
 </h3>
 This method yields num_words + 2 attention maps, one for each word token. By analyzing the variation in these maps for different prompts, we can study how the model dynamically distributes attention between the textual and visual modalities. These insights will guide us toward meaningful conclusions about the attention mechanism in multimodal settings, as detailed in the next section. <br><br>
-</p>
 
 <h2 style="text-align: center; font-family: 'Georgia', serif; font-size: 28px; font-style: italic;">
 Drawing Results from Image-Text Attention Maps
