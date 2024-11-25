@@ -209,6 +209,20 @@ The resulting attention map is superimposed on the original image with a transpa
   </div>
 </div>
 
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+  <!-- First Image Section -->
+  <div style="text-align: center;">
+    <h3 style="margin: 10px 0;">First layer attention projection over the image of a dog</h3>
+    <img src="assests\img\detailed_attn_over_image_dog.png" alt="Image 1" style="width: 60%; border: 1px solid #ccc; border-radius: 8px;">
+  </div>
+
+  <!-- Second Image Section -->
+  <div style="text-align: center;">
+    <h3 style="margin: 10px 0;">Cumulative layers attention projection over the image of a dog</h3>
+    <img src="assests\img\detailed_attn_over_image_new_dog.png" alt="Image 2" style="width: 60%; border: 1px solid #ccc; border-radius: 8px;">
+  </div>
+</div>
+
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 Results from Image Encoder Visualizations 
 </h3>
