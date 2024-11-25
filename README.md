@@ -195,6 +195,11 @@ Overlaying on the Original Image:
 
 The resulting attention map is superimposed on the original image with a transparency value. This overlay helps visualize which parts of the image the encoder attends to, either at a single layer or across multiple layers. <br><br>
 
+<div style="display: flex; justify-content: space-between; gap: 10px;">
+  <img src="assests\img\detailed_attn_over_image_cat.png" alt="Image 1" style="width: 48%;">
+  <img src="assests\img\detailed_attn_over_image_new_cat.png" alt="Image 2" style="width: 48%;">
+</div>
+
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 Results from Image Encoder Visualizations 
 </h3>
