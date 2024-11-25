@@ -248,7 +248,7 @@ Plotting Techniques for a Combination of Image and Text Encoders
 Visualizing the attention between image and text encoders is a more complex task compared to analyzing image-only attention maps. This complexity arises from the loss of spatial information in the image features due to a linear layer transformation and the distribution mismatch between image and text features. However, with innovative techniques, we can gain meaningful insights into how words interact with the image at a high level. <br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Challenges in Visualization <br><br>
+Challenges in Visualization 
 </h3>
 
 1. Loss of Spatial Information: <br><br>
@@ -258,7 +258,7 @@ The image features are flattened and passed through a linear layer, causing the 
 Image and text features originate from different encoders, each operating in distinct feature spaces with unique means and variances. This discrepancy prevents straightforward comparisons of attention scores in a shared attention map. <br><br>
 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
-Approach to Understand Image-Text Attention <br><br>
+Approach to Understand Image-Text Attention 
 </h3>
 Instead of attempting to directly map specific words to specific patches in the image, we analyze the total attention that each word assigns to the entire image. This approach allows us to derive meaningful insights without needing direct spatial correspondence. <br><br>
 </p>
@@ -288,7 +288,7 @@ Reshape the matrix into a shape of [16, 16, num_words + 2]. This reorganization 
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 Visualize Attention for Each Word: 
 </h3>
-For each word (i.e., for each value in the last dimension of the reshaped matrix), generate a 16x16 attention map. These maps quantify how much attention the word gives to the entire image.
+For each word (i.e., for each value in the last dimension of the reshaped matrix), generate a 16x16 attention map. These maps quantify how much attention the word gives to the entire image. <br><br>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 Overlay Attention Maps on the Image: <br><br>
 </h3>
