@@ -92,13 +92,11 @@ Cross-Attention:
 </h3>
 
 Computes attention scores between two sequences, such as between text and image features in multimodal models.<br><br>
-</h3>
 <h3 style="text-align: left; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: normal; font-style: italic; color: #34495e;">
 Global vs. Local Attention:
 </h3>
 Global attention considers all tokens, while local attention focuses on a subset, optimizing for tasks with very long sequences.
 I am not describing the concept of multiheaded attention here as it is beyond the scope of this book, but it is to be noted that we'll be averaging over all the attention heads in each layer for the upcoming discussions. <br><br>
-</h3>
 
 </p>
 
